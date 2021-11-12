@@ -25,7 +25,8 @@ module.exports = NodeHelper.create({
           method: "GET",
           uri: this.config.baseUrl + "/api/v1/status",
           headers: {
-            Accept: "application/json"
+            Accept: "application/json",
+            "API-SECRET": process.env.NS_API_SECRET
           }
         };
 
@@ -66,7 +67,11 @@ module.exports = NodeHelper.create({
           uri:
             this.config.baseUrl +
             "/api/v1/entries.json?count=" +
-            this.config.chartHours * 12
+            this.config.chartHours * 12,
+          headers: {
+            Accept: "application/json",
+            "API-SECRET": process.env.NS_API_SECRET
+          }
         };
 
         request(options)
